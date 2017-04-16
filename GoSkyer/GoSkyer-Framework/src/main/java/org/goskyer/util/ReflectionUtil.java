@@ -42,12 +42,12 @@ public final class ReflectionUtil {
      * @return
      */
     public static Object invokeMethod(Object obj, Method method, Object... args) {
-        Object result = null;
+        Object result;
         //对所有属性设置访问权限  当类中的成员变量为private时 必须设置此项
         method.setAccessible(true);
         try {
-           Class<?> type[] = method.getParameterTypes();
-           result = method.invoke(obj, args);
+            // Class<?> type[] = method.getParameterTypes();
+            result = method.invoke(obj, args);
         } catch (IllegalAccessException | InvocationTargetException e) {
             log.error("invokeMethod failure", e);
             throw new RuntimeException(e);

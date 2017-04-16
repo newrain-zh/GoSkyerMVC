@@ -1,6 +1,7 @@
 package org.goskyer.bean;
 
 import java.lang.reflect.Method;
+import java.util.regex.Matcher;
 
 /**
  * Created by zzqno on 2017-3-22.
@@ -11,19 +12,32 @@ public class Handler {
 
     private Class<?> controllerClass;
 
-    //action 方法
-    private Method actionMethod;
+    //controller 方法
+    private Method controllerMethod;
 
-    public Handler(Class<?> controllerClass, Method actionMethod) {
+    //正则表达式
+    private Matcher requestPathMatcher;
+
+
+    public Handler(Class<?> controllerClass, Method controllerMethod) {
         this.controllerClass = controllerClass;
-        this.actionMethod = actionMethod;
+        this.controllerMethod = controllerMethod;
     }
 
     public Class<?> getControllerClass() {
         return controllerClass;
     }
 
-    public Method getActionMethod() {
-        return actionMethod;
+    public Method getControllerMethod() {
+        return controllerMethod;
+    }
+
+
+    public Matcher getRequestPathMatcher() {
+        return requestPathMatcher;
+    }
+
+    public void setRequestPathMatcher(Matcher requestPathMatcher) {
+        this.requestPathMatcher = requestPathMatcher;
     }
 }

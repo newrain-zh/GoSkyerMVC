@@ -32,12 +32,21 @@ public final class BeanHelper {
 
     /**
      * 获取bean容器
+     *
      * @return
      */
     public static Map<Class<?>, Object> getBeanMap() {
         return BEAN_MAP;
     }
 
+    /**
+     * 添加Bean
+     * @param clazz
+     * @param object
+     */
+    public static void setBean(Class<?> clazz, Object object) {
+        BEAN_MAP.put(clazz, object);
+    }
 
     /**
      * 获取Bean的实例对象

@@ -35,4 +35,8 @@ public class View {
     public Map<String, Object> getModel() {
         return model;
     }
+
+    public boolean isRedirect() {
+        return path.startsWith("/");
+    }
 }

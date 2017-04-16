@@ -1,5 +1,7 @@
 package org.goskyer.bean;
 
+import org.goskyer.util.CastUtil;
+
 import java.util.Map;
 
 /**
@@ -13,11 +15,29 @@ public class Param {
         this.paramMap = paramMap;
     }
 
-    public long getLong(String name) {
-        return (long) paramMap.get(name);
-    }
 
     public Map<String, Object> getMap() {
         return paramMap;
+    }
+
+
+    private Object get(String name) {
+        return paramMap.get(name);
+    }
+
+    public String getString(String name) {
+        return CastUtil.castString(get(name));
+    }
+
+    public double getDouble(String name) {
+        return CastUtil.castDouble(get(name));
+    }
+
+    public long getLong(String name) {
+        return CastUtil.castLong(get(name));
+    }
+
+    public int getInt(String name) {
+        return CastUtil.castInt(get(name));
     }
 }

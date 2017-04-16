@@ -18,15 +18,18 @@ import java.util.Set;
  */
 public class ControllerHelper {
 
-    private static final Map<RequestBean, Handler> ACTION_MAP = new HashMap<>();
+    private static final Map<RequestBean, Handler> CONTROLLER_MAP = new HashMap<>();
 
     /**
-     * 从Action注解提取URL 初始化Request与Handler的关系
+     * 从Controller注解提取URL 初始化Request与Handler的关系
      */
     static {
         //获取所有controller类
         Set<Class<?>> controllerClasses = ClassHelper.getControllerClassSet();
         if (CollectionUtils.isNotEmpty(controllerClasses)) {
+            Map<RequestBean, Handler> commonActionMap = new HashMap<>(); // 存放普通 CONTROLLER_MAP
+            Map<RequestBean, Handler> regexpActionMap = new HashMap<>(); // 存放带有正则表达式的 CONTROLLER_MAP
+
             //遍历这些controller
             for (Class<?> controllerClass : controllerClasses) {
                 //获取所有方法
@@ -47,7 +50,7 @@ public class ControllerHelper {
                                 requestPath = StringUtils.replaceAll(requestPath, "\\{\\w+\\}", "(\\\\w+)");
                                 RequestBean request = new RequestBean(requestMethod, requestPath);
                                 Handler handler = new Handler(controllerClass, method);
-                                ACTION_MAP.put(request, handler);
+                                CONTROLLER_MAP.put(request, handler);
                             }
 
                         }
@@ -56,7 +59,7 @@ public class ControllerHelper {
 
             }
         }
-        System.out.println("actionMap.size is :" + ACTION_MAP.size());
+        System.out.println("actionMap.size is :" + CONTROLLER_MAP.size());
     }
 
 
@@ -69,11 +72,11 @@ public class ControllerHelper {
      */
     public static Handler getHandler(String requestMethod, String requestPath) {
         RequestBean request = new RequestBean(requestMethod, requestPath);
-        return ACTION_MAP.get(request);
+        return CONTROLLER_MAP.get(request);
     }
 
     public static Map<RequestBean, Handler> getActionMap() {
-        return ACTION_MAP;
+        return CONTROLLER_MAP;
     }
 
 
