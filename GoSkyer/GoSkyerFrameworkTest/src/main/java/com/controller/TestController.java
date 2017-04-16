@@ -27,4 +27,16 @@ public class TestController {
         System.out.println("name:"+name+" age:"+ age);
         return new Data("run goSkyer Framework is Success");
     }
+
+    @Request("get:/str")
+    public String str(String name, int age) {
+        System.out.println("name:"+name+" age:"+ age);
+        return "test.html";
+    }
+
+    @Request("get:/jsontest")
+    public String jsonTest(String name, int age) {
+        System.out.println("name:"+name+" age:"+ age);
+        return "test";
+    }
 }
