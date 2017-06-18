@@ -7,11 +7,11 @@ import java.util.Map;
 /**
  * Created by zzqno on 2017-3-22.
  */
-public class Param {
+public class Params {
 
     private Map<String, Object> paramMap;
 
-    public Param(Map<String, Object> paramMap) {
+    public Params(Map<String, Object> paramMap) {
         this.paramMap = paramMap;
     }
 
@@ -30,14 +30,17 @@ public class Param {
     }
 
     public double getDouble(String name) {
-        return CastUtil.castDouble(get(name));
+        //return CastUtil.castDouble(get(name));
+        return 0d;
     }
 
     public long getLong(String name) {
-        return CastUtil.castLong(get(name));
+      //  return CastUtil.castLong(get(name));
+        return 0L;
     }
 
     public int getInt(String name) {
-        return CastUtil.castInt(get(name));
+        //return CastUtil.castInt(get(name));
+        return 0;
     }
 }

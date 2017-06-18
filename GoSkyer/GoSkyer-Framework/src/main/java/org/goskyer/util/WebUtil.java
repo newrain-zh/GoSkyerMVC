@@ -68,23 +68,29 @@ public final class WebUtil {
     }
 
     /**
-     * 输出响应
-     *
+     * 输出响应 JSON格式
+     * 使用try-with-resources 处理错误
      * @param response
      * @param model
      * @throws IOException
      */
-    public static void outWriterReponse(HttpServletResponse response, Object model) throws IOException {
+    public static void outWriterReponse(HttpServletResponse response, Object model) {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        PrintWriter writer = response.getWriter();
-        writer.write(JSON.toJSONString(model));
-        writer.flush();
-        writer.close();
+        try (PrintWriter writer = response.getWriter()) {
+            // 向响应中写入数据
+            writer.write(JSON.toJSONString(model)); // 转为 JSON 字符串
+            writer.flush();
+            // PrintWriter 继承与 Writer  Writer 实现了AutoCloseable 可自动释放资源
+            //writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * 错误响应
+     *
      * @param code
      * @param message
      * @param response
