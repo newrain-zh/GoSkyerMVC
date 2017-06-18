@@ -52,11 +52,9 @@ public class ControllerHelper {
                                 Handler handler = new Handler(controllerClass, method);
                                 CONTROLLER_MAP.put(request, handler);
                             }
-
                         }
                     }
                 }
-
             }
         }
         System.out.println("actionMap.size is :" + CONTROLLER_MAP.size());
