@@ -43,7 +43,7 @@ public final class CastUtil {
         double doubleValue = DOUBLE_DEFAUL_TVALUE;
         if (StringUtils.isNotEmpty(strValue)) {
             try {
-                doubleValue = Double.valueOf(strValue).doubleValue();
+                doubleValue = Double.valueOf(strValue);
             } catch (NumberFormatException e) {
                 doubleValue = DOUBLE_DEFAUL_TVALUE;
             }
@@ -61,9 +61,8 @@ public final class CastUtil {
         int intValue = INT_DEFAUL_TVALUE;
         if (StringUtils.isNotEmpty(strInt)) {
             try {
-                intValue = Integer.valueOf(strInt).intValue();
+                intValue = Integer.valueOf(strInt);
             } catch (NumberFormatException e) {
-                intValue = INT_DEFAUL_TVALUE;
             }
         }
         return intValue;

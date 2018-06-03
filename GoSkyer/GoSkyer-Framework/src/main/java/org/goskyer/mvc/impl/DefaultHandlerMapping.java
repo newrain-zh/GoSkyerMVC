@@ -25,6 +25,9 @@ public class DefaultHandlerMapping implements HandlerMapping {
         Handler handler = null;
         // 获取并遍历 Action 映射
         Map<RequestBean, Handler> actionMap = ControllerHelper.getActionMap();
+        if (actionMap == null || actionMap.isEmpty()) {
+            return null;
+        }
         for (Map.Entry<RequestBean, Handler> actionEntry : actionMap.entrySet()) {
             // 从 Requester 中获取 Request 相关属性
             RequestBean requester = actionEntry.getKey();
