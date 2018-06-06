@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -61,7 +60,7 @@ public class TestServlert extends HttpServlet {
         Handler handler = handlerMapping.getHandler(currentRequestMethod, currentRequestUrl);
         //发送404状态码
         if (handler == null) {
-            WebUtil.sendError(HttpServletResponse.SC_NOT_FOUND, "", res);
+            WebUtil.outWriterReponse(res, HttpServletResponse.SC_NOT_FOUND);
             return;
         }
         try {
