@@ -10,7 +10,8 @@ public class Application {
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");
         server.setHandler(context);
-        context.addServlet(TestServlert.class, "/");
+        //设置处理请求的servlert 此处不再修改
+        context.addServlet(TestServlert.class, "/*");
         try {
             server.start();
             server.join();
